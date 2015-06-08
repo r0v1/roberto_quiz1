@@ -1,0 +1,35 @@
+<h1>The Supporter App</h1>
+
+
+
+<h2>All Support Requests</h2>
+
+<p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Message</th>
+      <th>Status</th>
+      <th colspan="3">Actions</th>
+    </tr>
+
+    <% @supports.each do |support| %>
+      <tr>
+        <td><%= support.name %></td>
+        <td><%= support.email %></td>
+        <td><%= support.department %></td>
+        <td><%= support.message %></td>
+        <td><%= support.status %></td>
+        <td><%= link_to "Edit", edit_support_path(support) %> </td>
+        <td><%= button_to "Delete", support_path(support),
+            method: :delete,
+            data: {confirm: "Are you sure you want to delete this request?"} %>
+        </td>
+        <td><%= link_to "Done/Not Done", edit_support_path(support) %> </td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+<%= link_to "Add a New Request", new_support_path %>

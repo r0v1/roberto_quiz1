@@ -1,0 +1,32 @@
+
+
+<%= form_for @support do |f| %>
+  <p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </p>
+  <p>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  </p>
+  <p>
+  <%= f.label :department %>
+  <%= f.radio_button :department, "Sales" %> Sales
+  <%= f.radio_button :department, "Marketing" %> Marketing
+  <%= f.radio_button :department, "Technical" %> Technical
+
+  </p>
+  <p>
+  <%= f.label :message %>
+  <%= f.text_area :message %>
+  </p>
+  <p>
+  <%= f.label :status %>
+  <%= f.radio_button :status, true %> Done
+  <%= f.radio_button :status, false %> Not Done
+  </p>
+  <p>
+  <%= f.submit "Save" %>
+  </p>
+
+<% end %>
