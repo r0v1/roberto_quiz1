@@ -1,32 +1,30 @@
+<% if @support.errors.any? %>
+  <ul>
+    <% @support.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 
 <%= form_for @support do |f| %>
-  <p>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  </p>
-  <p>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  </p>
-  <p>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
   <%= f.label :department %>
   <%= f.radio_button :department, "Sales" %> Sales
   <%= f.radio_button :department, "Marketing" %> Marketing
   <%= f.radio_button :department, "Technical" %> Technical
-
-  </p>
-  <p>
+  </div>
+  <div>
   <%= f.label :message %>
   <%= f.text_area :message %>
-  </p>
-  <p>
-  <%= f.label :status %>
-  <%= f.radio_button :status, true %> Done
-  <%= f.radio_button :status, false %> Not Done
-  </p>
-  <p>
+  </div>
   <%= f.submit "Save" %>
-  </p>
-
 <% end %>

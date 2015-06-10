@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
+
   root 'supports#index'
 
-  resources :supports
+  post "/supports/status/:id" => "supports#status", as: :status_support
 
+  resources :supports
 end

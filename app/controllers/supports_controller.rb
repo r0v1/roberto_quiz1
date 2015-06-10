@@ -1,15 +1,15 @@
 class SupportsController < ApplicationController
 
   def welcome
-    @current_time = DateTime.now
-    @authors_names = ["Brent", "John", "Vatne"]
     @supports = Support.all
   end
 
   def index
-    @current_time = DateTime.now
-    @authors_names = ["Brent", "John", "Vatne"]
-    @supports = Support.all
+    if params[:q]
+      @supports = Support.search(params[:q]).page(params[:page]).per(10).order("status")
+    else
+      @supports = Support.page(params[:page]).per(10).order("status")
+    end
   end
 
   def show
@@ -22,7 +22,7 @@ class SupportsController < ApplicationController
   end
 
   def create
-    support_params = params.require(:support).permit([:name, :email, :department, :message, :status])
+    support_params = params.require(:support).permit([:name, :email, :department, :message])
     @support       = Support.new(support_params)
     if @support.save
       redirect_to support_path(@support.id)
@@ -49,6 +49,16 @@ class SupportsController < ApplicationController
     redirect_to supports_path
   end
 
+  def status
+    @support = Support.find params[:id]
+    if @support.status
+      @support.update(status: true)
+    else
+      @support.update(status: false)
+    end
+
+    redirect_to supports_path
+  end
 
   private
 

@@ -5,3 +5,6 @@
 <p>Status: <%= @support.status %></p>
 <br>
 <%= link_to "Edit", edit_support_path %>
+<br>
+<%= link_to "Delete", support_path(@support), method: :delete,
+          data: {confirm: "Do you really want to delete it?"} %>
